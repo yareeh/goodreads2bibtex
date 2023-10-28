@@ -46,6 +46,7 @@ describe("bibtex", () => {
   url = "${bibtex.url}"
 }`)
     })
+
     it("can convert bibtex object without isbn string", () => {
       const bibtex: BibTex = {
         title: "Tyhjyyspäiväkirja",
@@ -62,6 +63,22 @@ describe("bibtex", () => {
   year =  ${bibtex.year},
   url = "${bibtex.url}"
 }`)
+    })
+
+    it("can convert bibtex object with quotes in title", () => {
+      const bibtex: BibTex = {
+        // eslint-disable-next-line quotes
+        title: '"Quote in title" hmmm',
+        author: "Yagi, Emi",
+        isbn: "9789511455844",
+        publisher: "Otava",
+        year: "2023",
+        url: "https://www.goodreads.com/book/show/148702177",
+      }
+
+      expect(bibtexToString(bibtex)).toContain(
+        "title = \"''Quote in title'' hmmm\"",
+      )
     })
   })
 })

@@ -31,9 +31,11 @@ export function goodreadToBibtex(goodread: GoodRead): BibTex {
 }
 
 export function bibtexToString(bibtex: BibTex): string {
+  // eslint-disable-next-line prettier/prettier
+  const titleWithMaskedQuotes = bibtex.title.replaceAll("\"", "''")
   return `@Book{
   author = "${bibtex.author}",
-  title = "${bibtex.title}",
+  title = "${titleWithMaskedQuotes}",
   publisher = "${bibtex.publisher}",
   year =  ${bibtex.year},
 ${bibtex.isbn ? `  isbn = "${bibtex.isbn}",\n` : ""}  url = "${bibtex.url}"
