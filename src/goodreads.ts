@@ -24,7 +24,7 @@ const GoodRead = z.object({
   Publisher: z.string(),
   "Year Published": z.string(),
 })
-type GoodRead = z.infer<typeof GoodRead>
+export type GoodRead = z.infer<typeof GoodRead>
 
 export function parseCsvRow(row: unknown): GoodRead {
   return GoodRead.parse(row)
