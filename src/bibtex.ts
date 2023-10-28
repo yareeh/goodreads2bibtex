@@ -6,7 +6,7 @@ export interface BibTex {
   author: string
   isbn?: string
   publisher: string
-  year: string
+  year?: string
   url: string
 }
 
@@ -25,7 +25,7 @@ export function goodreadToBibtex(goodread: GoodRead): BibTex {
     author,
     isbn: ISBN13.length > 0 ? ISBN13 : ISBN.length > 0 ? ISBN : undefined,
     publisher,
-    year,
+    year: year.length > 0 ? year : undefined,
     url: `https://www.goodreads.com/book/show/${id}`,
   }
 }
@@ -37,7 +37,8 @@ export function bibtexToString(bibtex: BibTex): string {
   author = "${bibtex.author}",
   title = "${titleWithMaskedQuotes}",
   publisher = "${bibtex.publisher}",
-  year =  ${bibtex.year},
-${bibtex.isbn ? `  isbn = "${bibtex.isbn}",\n` : ""}  url = "${bibtex.url}"
+${bibtex.year ? `  year =  ${bibtex.year},\n` : ""}${
+    bibtex.isbn ? `  isbn = "${bibtex.isbn}",\n` : ""
+  }  url = "${bibtex.url}"
 }`
 }
