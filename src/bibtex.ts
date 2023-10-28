@@ -23,7 +23,7 @@ export function goodreadToBibtex(goodread: GoodRead): BibTex {
   return {
     title,
     author,
-    isbn: ISBN13.length > 0 ? ISBN13 : ISBN,
+    isbn: ISBN13.length > 0 ? ISBN13 : ISBN.length > 0 ? ISBN : undefined,
     publisher,
     year,
     url: `https://www.goodreads.com/book/show/${id}`,

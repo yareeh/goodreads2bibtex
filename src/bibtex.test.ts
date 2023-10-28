@@ -20,5 +20,9 @@ describe("bibtex", () => {
     it("uses ISBN if no ISBN13", () => {
       expect(goodreadToBibtex(goodreads[17]).isbn).toBe("9510189367")
     })
+
+    it("Has no isbn if both ISBN fields are empty", () => {
+      expect(goodreadToBibtex(goodreads[1]).isbn).toBeUndefined()
+    })
   })
 })
