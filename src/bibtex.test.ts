@@ -4,7 +4,7 @@ import { GoodRead, csvReader, parseCsvRow } from "./goodreads"
 describe("bibtex", () => {
   const testFile = "./test/goodreads_library_export.csv"
   const goodreads: GoodRead[] = csvReader(testFile).map(parseCsvRow)
-  describe("bibtex", () => {
+  describe("goodreadToBibtex", () => {
     it("can convert goodread object to bibtex object", () => {
       const gr = goodreads[0]
       expect(goodreadToBibtex(gr)).toEqual({
