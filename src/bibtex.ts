@@ -15,14 +15,15 @@ export function goodreadToBibtex(goodread: GoodRead): BibTex {
     "Book Id": id,
     Title: title,
     "Author l-f": author,
-    ISBN13: isbn,
+    ISBN,
+    ISBN13,
     Publisher: publisher,
     "Year Published": year,
   } = goodread
   return {
     title,
     author,
-    isbn,
+    isbn: ISBN13.length > 0 ? ISBN13 : ISBN,
     publisher,
     year,
     url: `https://www.goodreads.com/book/show/${id}`,

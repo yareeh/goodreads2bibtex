@@ -16,5 +16,9 @@ describe("bibtex", () => {
         url: `https://www.goodreads.com/book/show/${gr["Book Id"]}`,
       })
     })
+
+    it("uses ISBN if no ISBN13", () => {
+      expect(goodreadToBibtex(goodreads[17]).isbn).toBe("9510189367")
+    })
   })
 })
