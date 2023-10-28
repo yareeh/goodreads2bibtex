@@ -46,5 +46,22 @@ describe("bibtex", () => {
   url = "${bibtex.url}"
 }`)
     })
+    it("can convert bibtex object without isbn string", () => {
+      const bibtex: BibTex = {
+        title: "Tyhjyyspäiväkirja",
+        author: "Yagi, Emi",
+        publisher: "Otava",
+        year: "2023",
+        url: "https://www.goodreads.com/book/show/148702177",
+      }
+
+      expect(bibtexToString(bibtex)).toBe(`@Book{
+  author = "${bibtex.author}",
+  title = "${bibtex.title}",
+  publisher = "${bibtex.publisher}",
+  year =  ${bibtex.year},
+  url = "${bibtex.url}"
+}`)
+    })
   })
 })

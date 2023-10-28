@@ -36,7 +36,6 @@ export function bibtexToString(bibtex: BibTex): string {
   title = "${bibtex.title}",
   publisher = "${bibtex.publisher}",
   year =  ${bibtex.year},
-  isbn = "${bibtex.isbn}",
-  url = "${bibtex.url}"
+${bibtex.isbn ? `  isbn = "${bibtex.isbn}",\n` : ""}  url = "${bibtex.url}"
 }`
 }
