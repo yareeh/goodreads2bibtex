@@ -1,7 +1,7 @@
 import z from "zod"
 import { GoodRead } from "./goodreads"
 
-interface BibTex {
+export interface BibTex {
   title: string
   author: string
   isbn?: string
@@ -28,4 +28,15 @@ export function goodreadToBibtex(goodread: GoodRead): BibTex {
     year,
     url: `https://www.goodreads.com/book/show/${id}`,
   }
+}
+
+export function bibtexToString(bibtex: BibTex): string {
+  return `@Book{
+  author = "${bibtex.author}",
+  title = "${bibtex.title}",
+  publisher = "${bibtex.publisher}",
+  year =  ${bibtex.year},
+  isbn = "${bibtex.isbn}",
+  url = "${bibtex.url}"
+}`
 }

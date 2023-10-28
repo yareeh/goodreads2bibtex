@@ -1,4 +1,4 @@
-import { goodreadToBibtex } from "./bibtex"
+import { BibTex, bibtexToString, goodreadToBibtex } from "./bibtex"
 import { GoodRead, csvReader, parseCsvRow } from "./goodreads"
 
 describe("bibtex", () => {
@@ -23,6 +23,28 @@ describe("bibtex", () => {
 
     it("Has no isbn if both ISBN fields are empty", () => {
       expect(goodreadToBibtex(goodreads[1]).isbn).toBeUndefined()
+    })
+  })
+
+  describe("bibtexToString", () => {
+    it("can convert bibtex object to string", () => {
+      const bibtex: BibTex = {
+        title: "Tyhjyyspäiväkirja",
+        author: "Yagi, Emi",
+        isbn: "9789511455844",
+        publisher: "Otava",
+        year: "2023",
+        url: "https://www.goodreads.com/book/show/148702177",
+      }
+
+      expect(bibtexToString(bibtex)).toBe(`@Book{
+  author = "${bibtex.author}",
+  title = "${bibtex.title}",
+  publisher = "${bibtex.publisher}",
+  year =  ${bibtex.year},
+  isbn = "${bibtex.isbn}",
+  url = "${bibtex.url}"
+}`)
     })
   })
 })
