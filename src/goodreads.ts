@@ -8,9 +8,6 @@ export function csvReader(file: string) {
     columns: true,
     skip_empty_lines: true,
   })
-
-  console.log(records)
-
   return records
 }
 
